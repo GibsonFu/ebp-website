@@ -184,22 +184,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .nav-logo { display:flex; align-items:center; }
 
-/* 兩個 logo 共用尺寸 */
-.logo-svg,
 .logo-img {
   height: 32px;
   width: auto;
-  transition: opacity .3s ease;
   display: block;
+  transition: filter .3s ease;
 }
-
-/* 深色 Hero（未捲動）：SVG 顯示，PNG 隱藏 */
-.nav-header:not(.scrolled) .logo-on-dark  { opacity: 1; }
-.nav-header:not(.scrolled) .logo-on-light { opacity: 0; position: absolute; pointer-events: none; }
-
-/* 白色 Navbar（捲動後）：PNG 顯示，SVG 隱藏 */
-.nav-header.scrolled .logo-on-dark  { opacity: 0; position: absolute; pointer-events: none; }
-.nav-header.scrolled .logo-on-light { opacity: 1; }
+/* 深色 Hero（未捲動）：反白成純白 logo，透明背景不顯示方框 */
+.nav-header:not(.scrolled) .logo-img {
+  filter: brightness(0) invert(1);
+}
+/* 白色 Navbar（捲動後）：顯示原色 */
+.nav-header.scrolled .logo-img {
+  filter: none;
+}
 
 .nav-links { display:flex; align-items:center; gap:2px; }
 .nav-item  { position:relative; }
@@ -1005,7 +1003,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Logo fade in on load ── */
-.logo-on-dark {
+.logo-img {
   animation: logoFadeIn .6s ease .3s both;
 }
 @keyframes logoFadeIn {
