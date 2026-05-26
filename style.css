@@ -184,18 +184,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .nav-logo { display:flex; align-items:center; }
 
-/* logo.png — 在深色 hero 上反白，捲動後顯示原色 */
+/* 兩個 logo 共用尺寸 */
+.logo-svg,
 .logo-img {
-  height: 42px;
+  height: 32px;
   width: auto;
-  transition: filter .3s ease, opacity .3s ease;
+  transition: opacity .3s ease;
+  display: block;
 }
-.nav-header:not(.scrolled) .logo-img {
-  filter: brightness(0) invert(1);   /* 深色背景 → 白色 logo */
-}
-.nav-header.scrolled .logo-img {
-  filter: none;                       /* 白色 navbar → 原色 logo */
-}
+
+/* 深色 Hero（未捲動）：SVG 顯示，PNG 隱藏 */
+.nav-header:not(.scrolled) .logo-on-dark  { opacity: 1; }
+.nav-header:not(.scrolled) .logo-on-light { opacity: 0; position: absolute; pointer-events: none; }
+
+/* 白色 Navbar（捲動後）：PNG 顯示，SVG 隱藏 */
+.nav-header.scrolled .logo-on-dark  { opacity: 0; position: absolute; pointer-events: none; }
+.nav-header.scrolled .logo-on-light { opacity: 1; }
 
 .nav-links { display:flex; align-items:center; gap:2px; }
 .nav-item  { position:relative; }
@@ -970,7 +974,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .container { padding: 0 20px; }
   .hero-ctas { flex-direction:column; align-items:flex-start; }
   .gp-grid { grid-template-columns:1fr; }
-  .logo-img { height:34px; }
+  .logo-svg, .logo-img { height:28px; }
   .products-table thead th:nth-child(4),
   .products-table tbody td:nth-child(4) { display:none; }
 }
@@ -1001,7 +1005,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Logo fade in on load ── */
-.logo-img {
+.logo-on-dark {
   animation: logoFadeIn .6s ease .3s both;
 }
 @keyframes logoFadeIn {
