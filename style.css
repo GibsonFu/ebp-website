@@ -273,7 +273,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   inset: 0;
   background:
-    url('images/hero-bg.jpg') center center / cover no-repeat;
+    url('images/hero-bg.png') center center / cover no-repeat;
 }
 .hero-img-overlay {
   position: absolute;
@@ -415,7 +415,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   inset: 0;
   background:
-    url('images/about-team.jpg') center center / cover no-repeat;
+    url('images/about-team.png') center center / cover no-repeat;
 }
 
 .about-img-badge {
