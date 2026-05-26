@@ -183,11 +183,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .nav-logo { display:flex; align-items:center; }
-.logo-svg  { height: 42px; width: auto; transition: var(--ease); }
 
-/* Dark logo text when scrolled (SVG uses fill in HTML, we swap via filter) */
-.nav-header:not(.scrolled) .logo-svg text { fill: rgba(255,255,255,0.95) !important; }
-.nav-header.scrolled .logo-svg text { fill: var(--text-dark) !important; }
+/* logo.png — 在深色 hero 上反白，捲動後顯示原色 */
+.logo-img {
+  height: 42px;
+  width: auto;
+  transition: filter .3s ease, opacity .3s ease;
+}
+.nav-header:not(.scrolled) .logo-img {
+  filter: brightness(0) invert(1);   /* 深色背景 → 白色 logo */
+}
+.nav-header.scrolled .logo-img {
+  filter: none;                       /* 白色 navbar → 原色 logo */
+}
 
 .nav-links { display:flex; align-items:center; gap:2px; }
 .nav-item  { position:relative; }
@@ -890,7 +898,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer-top { padding: 80px 0 60px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .footer-inner { display:grid; grid-template-columns: 280px 1fr; gap:80px; }
 
-.footer-logo-svg { height: 38px; margin-bottom: 18px; }
+.footer-logo-img { height: 38px; margin-bottom: 18px; filter: brightness(0) invert(1); opacity: 0.9; }
 .footer-tagline { font-size:13px; color:rgba(255,255,255,0.48); margin-bottom:8px; }
 .footer-est { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); }
 
@@ -962,7 +970,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .container { padding: 0 20px; }
   .hero-ctas { flex-direction:column; align-items:flex-start; }
   .gp-grid { grid-template-columns:1fr; }
-  .logo-svg { height:34px; }
+  .logo-img { height:34px; }
   .products-table thead th:nth-child(4),
   .products-table tbody td:nth-child(4) { display:none; }
 }
@@ -992,15 +1000,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   to { transform: scale(1); opacity: 0; }
 }
 
-/* ── Logo bars slide in on load ── */
-.logo-svg rect:nth-child(1) { animation: barIn .5s cubic-bezier(.16,1,.3,1) .05s both; }
-.logo-svg rect:nth-child(2) { animation: barIn .5s cubic-bezier(.16,1,.3,1) .15s both; }
-.logo-svg rect:nth-child(3) { animation: barIn .5s cubic-bezier(.16,1,.3,1) .25s both; }
-.logo-svg rect:nth-child(4) { animation: barIn .5s cubic-bezier(.16,1,.3,1) .35s both; }
-.logo-svg rect:nth-child(5) { animation: barIn .5s cubic-bezier(.16,1,.3,1) .45s both; }
-@keyframes barIn {
-  from { transform: scaleX(0); transform-origin: left center; opacity: 0; }
-  to   { transform: scaleX(1); opacity: 1; }
+/* ── Logo fade in on load ── */
+.logo-img {
+  animation: logoFadeIn .6s ease .3s both;
+}
+@keyframes logoFadeIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 /* ── Hero animated gradient background ── */
