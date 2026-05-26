@@ -273,8 +273,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(135deg, #d6eef5 0%, #e8f5f9 30%, #f0f8fb 55%, #c8e2ec 80%, #a8d4e4 100%);
-  /* background-image: url('hero.jpg'); background-size: cover; background-position: center; */
+    url('images/hero-bg.jpg') center center / cover no-repeat;
 }
 .hero-img-overlay {
   position: absolute;
@@ -405,10 +404,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 70% at 70% 40%, rgba(107,175,194,0.35) 0%, transparent 65%),
-    linear-gradient(135deg, #d0eaf2 0%, #e8f5f9 50%, #c0dce8 100%);
+    url('images/about-team.jpg') center center / cover no-repeat;
 }
-/* Drop in your own image: .about-img-inner { background-image: url('about.jpg'); background-size:cover; } */
 
 .about-img-badge {
   position: absolute;
@@ -479,8 +476,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .branded-img-bg {
   position: absolute; inset: 0;
-  /* Replace with: background-image: url('branded-bg.jpg'); background-size:cover; */
-  background: linear-gradient(135deg, #0e2540 0%, #1a3d64 40%, #124a6a 70%, #0d3050 100%);
+  background:
+    url('images/product-branded.jpg') center center / cover no-repeat;
 }
 .branded-overlay {
   position: absolute; inset: 0;
@@ -1267,4 +1264,45 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 @keyframes preloaderFill {
   to { width: 100%; }
+}
+
+/* ── AI-generated images: about lab card ── */
+.about-lab-card {
+  margin-top: 16px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  height: 160px;
+  background: url('images/about-lab.jpg') center center / cover no-repeat;
+  box-shadow: var(--sh-md);
+}
+
+/* ── AI-generated images: generic product banner ── */
+.gp-banner {
+  position: relative;
+  margin-bottom: 48px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  height: 220px;
+  box-shadow: var(--sh-lg);
+}
+.gp-banner-img {
+  position: absolute;
+  inset: 0;
+  background: url('images/product-generic.jpg') center 60% / cover no-repeat;
+  transform-origin: center;
+  transition: transform 8s ease;
+}
+.gp-banner:hover .gp-banner-img {
+  transform: scale(1.04);
+}
+.gp-banner-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 32px;
+  background: linear-gradient(0deg, rgba(11,29,53,0.72) 0%, transparent 100%);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  letter-spacing: 2px;
+  font-weight: 300;
 }
