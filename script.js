@@ -180,34 +180,10 @@ function initHeroGlow() {
 
 /* ── 7. HERO TITLE WORD ANIMATION ─────────────── */
 function initHeroTitle() {
-  const title = document.querySelector('.hero-title');
-  if (!title) return;
-
-  // Walk TEXT nodes only — never touch element nodes like <br> or <em>
-  const textNodes = [];
-  const walker = document.createTreeWalker(title, NodeFilter.SHOW_TEXT);
-  let n;
-  while ((n = walker.nextNode())) textNodes.push(n);
-
-  textNodes.forEach(node => {
-    const parts = node.nodeValue.split(/(\s+)/);
-    const frag = document.createDocumentFragment();
-    parts.forEach(part => {
-      if (!part || /^\s+$/.test(part)) {
-        frag.appendChild(document.createTextNode(part));
-      } else {
-        const span = document.createElement('span');
-        span.className = 'hero-word';
-        span.textContent = part;
-        frag.appendChild(span);
-      }
-    });
-    node.parentNode.replaceChild(frag, node);
-  });
-
-  const words = title.querySelectorAll('.hero-word');
+  // Words are pre-marked in HTML as .hero-word spans — just trigger the animation
+  const words = document.querySelectorAll('.hero-title .hero-word');
   words.forEach((w, i) => {
-    setTimeout(() => w.classList.add('in'), 500 + i * 80);
+    setTimeout(() => w.classList.add('in'), 500 + i * 120);
   });
 }
 
