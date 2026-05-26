@@ -720,9 +720,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .gp-card:hover { transform:translateY(-4px); box-shadow:var(--sh-md); }
 
-.gp-brand { font-family:var(--font-serif); font-size:28px; font-weight:400; color:var(--text-dark); line-height:1; margin-bottom:6px; }
-.gp-dose  { font-size:13px; color:var(--sage); font-weight:600; margin-bottom:12px; }
-.gp-generic { font-size:13px; color:var(--text-light); font-style:italic; margin-bottom:16px; }
+.gp-brand    { font-family:var(--font-serif); font-size:28px; font-weight:400; color:var(--text-dark); line-height:1; margin-bottom:4px; }
+.gp-brand-zh { font-family:var(--font-sans); font-size:13px; font-weight:500; color:var(--sage); margin-bottom:10px; letter-spacing:.05em; }
+.gp-dose     { font-size:13px; color:var(--sage); font-weight:600; margin-bottom:12px; }
+.gp-generic  { font-size:13px; color:var(--text-light); font-style:italic; margin-bottom:16px; }
 .gp-tag {
   display: inline-block;
   padding: 4px 12px;
