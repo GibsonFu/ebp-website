@@ -182,22 +182,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: 80px;
 }
 
-.nav-logo { display:flex; align-items:center; }
+.nav-logo { display: flex; align-items: center; position: relative; }
 
 .logo-img {
   height: 32px;
   width: auto;
   display: block;
-  transition: filter .3s ease;
+  transition: opacity .35s ease;
 }
-/* 深色 Hero（未捲動）：反白成純白 logo，透明背景不顯示方框 */
-.nav-header:not(.scrolled) .logo-img {
-  filter: brightness(0) invert(1);
-}
-/* 白色 Navbar（捲動後）：顯示原色 */
-.nav-header.scrolled .logo-img {
-  filter: none;
-}
+
+/* ── 深色 Hero（未捲動）：白字彩條版顯示，原色版隱藏 ── */
+.nav-header:not(.scrolled) .logo-dark-bg  { opacity: 1; position: relative; }
+.nav-header:not(.scrolled) .logo-light-bg { opacity: 0; position: absolute; pointer-events: none; }
+
+/* ── 白色 Navbar（捲動後）：原色版顯示，白字版隱藏 ── */
+.nav-header.scrolled .logo-dark-bg  { opacity: 0; position: absolute; pointer-events: none; }
+.nav-header.scrolled .logo-light-bg { opacity: 1; position: relative; }
 
 .nav-links { display:flex; align-items:center; gap:2px; }
 .nav-item  { position:relative; }
@@ -1003,7 +1003,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Logo fade in on load ── */
-.logo-img {
+.logo-dark-bg {
   animation: logoFadeIn .6s ease .3s both;
 }
 @keyframes logoFadeIn {
